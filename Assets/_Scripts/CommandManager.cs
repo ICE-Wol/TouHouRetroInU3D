@@ -14,8 +14,8 @@ namespace _Scripts.Commands {
         Special,
     }
     public class CommandManager : MonoBehaviour {
-        private PlayerController _player;
         private ICommand[] _commands;
+        [SerializeField] private PlayerController player;
         [SerializeField] protected KeyCode[] keySettings;
 
         private void Start() {
@@ -25,19 +25,16 @@ namespace _Scripts.Commands {
             }
         }
 
-        private void Update() {
-            var command = HandleInput();
-            command.Execute(_player);
+        private void Update() { 
+            HandleInput();
         }
 
-        private ICommand HandleInput() {
-            ICommand command = _commands[(int)Command.Empty];
+        private void HandleInput() {
             for (int i = 0; i <= 8; i++) {
                 if (Input.GetKey(keySettings[i])) {
-                    command = _commands[i];
+                    _commands[i].Execute(player);
                 }
             }
-            return command;
         }
     }
 }
