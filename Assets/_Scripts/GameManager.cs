@@ -2,6 +2,17 @@ using UnityEngine;
 
 namespace _Scripts {
     public class GameManager : MonoBehaviour {
+        public static GameManager Manager;
+
+        private void Awake() {
+            if (Manager == null) {
+                Manager = this;
+            }
+            else {
+                Destroy(this.gameObject);
+            }
+        }
+        
         [SerializeField] private Sprite[] player00Idle;
         [SerializeField] private Sprite[] player00Left;
         [SerializeField] private Sprite[] player00Right;
@@ -23,5 +34,7 @@ namespace _Scripts {
         }
 
         private int _playerNum;
+        
+        
     }
 }
