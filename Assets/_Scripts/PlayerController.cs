@@ -1,8 +1,11 @@
 using System;
+using _Scripts.Commands;
 using UnityEngine;
 
 namespace _Scripts {
     public class PlayerController : MonoBehaviour {
+        [SerializeField] private SlowEffectManager effSlow;
+        [SerializeField] private PlayerBullet playerBullet;
         private SpriteRenderer _spriteRenderer;
         private Vector2 _direction;
         private float _slowMultiplier;
@@ -19,7 +22,10 @@ namespace _Scripts {
 
         public void SetSpeedY(bool isPositive) => _direction.y = isPositive ? 1 : -1;
 
-        public void SetSlow() => _slowMultiplier = _slowRate;
+        public void SetSlow() {
+            _slowMultiplier = _slowRate;
+            effSlow.SetSlow();
+        }
 
         private void ResetSpeed() => _direction = Vector2.zero;
 
@@ -67,6 +73,7 @@ namespace _Scripts {
         private void ResetState() {
             _direction = Vector2.zero;
             _slowMultiplier = 1f;
+            effSlow.SetNormal();
         }
 
         /// <summary>
@@ -75,7 +82,15 @@ namespace _Scripts {
         private void Movement() {
             transform.position += _moveSpeed * _slowMultiplier * Time.fixedDeltaTime
                                   * (Vector3)_direction.normalized;
-            if(_slowMultiplier <= 0.9f) Debug.Log(_direction.normalized);
+        }
+
+        public void Fire() {
+            Instantiate(playerBullet, 
+                transform.position + 0.1f * Vector3.left, 
+                Quaternion.Euler(0, 0, 90f));
+            Instantiate(playerBullet, 
+                transform.position - 0.1f * Vector3.left, 
+                Quaternion.Euler(0, 0, 90f));
         }
         
         void Start() {
