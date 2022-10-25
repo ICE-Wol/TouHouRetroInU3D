@@ -85,16 +85,19 @@ namespace _Scripts {
         }
 
         public void Fire() {
-            Instantiate(playerBullet, 
-                transform.position + 0.1f * Vector3.left, 
-                Quaternion.Euler(0, 0, 90f));
-            Instantiate(playerBullet, 
-                transform.position - 0.1f * Vector3.left, 
-                Quaternion.Euler(0, 0, 90f));
+            if (_timer % 2 == 0) {
+                var bullet = BulletManager.Manager.PlayerBulletPool.Get();
+                bullet.transform.position = transform.position + 0.15f * Vector3.left;
+                bullet.transform.rotation = Quaternion.Euler(0, 0, 90f);
+
+                bullet = BulletManager.Manager.PlayerBulletPool.Get();
+                bullet.transform.position = transform.position - 0.15f * Vector3.left;
+                bullet.transform.rotation = Quaternion.Euler(0, 0, 90f);
+            }
         }
         
         void Start() {
-            _moveSpeed = 3f;
+            _moveSpeed = 5f;
             _frameSpeed = 4;
             _slowMultiplier = 1f;
             _slowRate = 0.6f;

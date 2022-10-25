@@ -48,8 +48,8 @@ namespace _Scripts {
             slowEffects[1].color = color;
             slowEffects[0].color = color;
             
-            slowEffects[0].transform.rotation = Quaternion.Euler(0,0,_timer / 30f);
-            slowEffects[1].transform.rotation = Quaternion.Euler(0,0,-_timer / 30f);
+            slowEffects[0].transform.rotation = Quaternion.Euler(0,0,_timer / 10f);
+            slowEffects[1].transform.rotation = Quaternion.Euler(0,0,-_timer / 10f);
 
         }
     }

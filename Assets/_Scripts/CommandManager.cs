@@ -25,7 +25,7 @@ namespace _Scripts.Commands {
             }
         }
 
-        private void Update() { 
+        private void FixedUpdate() { 
             HandleInput();
         }
 
