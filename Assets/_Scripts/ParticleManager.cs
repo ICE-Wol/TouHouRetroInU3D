@@ -1,19 +1,40 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace _Scripts {
     public class ParticleManager : MonoBehaviour {
         [SerializeField] private Sprite[] player00Shoot00;
         
-        // Start is called before the first frame update
-        void Start()
-        {
-            
+        [SerializeField] private Particle particle;
+        public ObjectPool<Particle> ParticlePool;
+        public static ParticleManager Manager;
+
+        private void Awake() {
+            if (!Manager) {
+                Manager = this;
+            }
+            else {
+                Destroy(this.gameObject);
+            }
         }
 
-        // Update is called once per frame
-        void Update()
-        {
+        public Sprite[] GetParticleAnim(int ord) {
+            switch (ord) {
+                 default:
+                     return player00Shoot00;
+            }
+        }
         
+        private void Start() {
+            ParticlePool = new ObjectPool<Particle>(() => {
+                return Instantiate(particle);
+            }, bullet => {
+                bullet.gameObject.SetActive(true);
+            }, bullet => {
+                bullet.gameObject.SetActive(false);
+            }, bullet => {
+                Destroy(bullet.gameObject);
+            }, false, 50, 100);
         }
     }
 }

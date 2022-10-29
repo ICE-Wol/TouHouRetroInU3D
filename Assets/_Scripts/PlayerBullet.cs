@@ -20,7 +20,11 @@ namespace _Scripts {
             //single bullet
             if (nearestEnemy != null && _radius + nearestEnemy.Radius >= minDis) {
                 nearestEnemy.TakeDamage(_damage);
-                //TODO: make some particles.
+                
+                var p = ParticleManager.Manager.ParticlePool.Get();
+                p.SetAnim(ParticleManager.Manager.GetParticleAnim(1));
+                p.transform.position = transform.position;
+                
                 BulletManager.Manager.PlayerBulletPool.Release(this);
             }
         }

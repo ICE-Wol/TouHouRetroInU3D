@@ -1,3 +1,4 @@
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 namespace _Scripts {
@@ -52,6 +53,24 @@ namespace _Scripts {
             current.z = Approach(current.z, target.z, rate.z);
             return current;
         }
+        
+        public static Color Fade(Color current, float rate) {
+            current.a = Approach(current.a, 0, rate);
+            return current;
+        }
+        
+        public static Color Appear(Color current, float rate) {
+            current.a = Approach(current.a, 1, rate);
+            return current;
+        }
+
+        public static Color SetAlpha(Color current, float alpha) {
+            if (alpha > 1f) alpha = 1f;
+            if (alpha < 0f) alpha = 0f;
+            current.a = alpha;
+            return current;
+        }
+
 
         public static Vector3 RandomRange(Vector3 vec,float range) {
             vec.x += Random.Range(-range, range);

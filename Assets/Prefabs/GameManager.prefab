@@ -115,10 +115,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player00Shoot00:
-  - {fileID: 1165867937, guid: 900129580b8c40c4db3c66295c1b9feb, type: 3}
-  - {fileID: -2011168728, guid: 900129580b8c40c4db3c66295c1b9feb, type: 3}
   - {fileID: 1713363024, guid: 900129580b8c40c4db3c66295c1b9feb, type: 3}
   - {fileID: -1913761651, guid: 900129580b8c40c4db3c66295c1b9feb, type: 3}
+  particle: {fileID: 8624650928913395907, guid: daf98e30874a69247b26f4561ab7398f, type: 3}
 --- !u!114 &380076590
 MonoBehaviour:
   m_ObjectHideFlags: 0

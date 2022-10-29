@@ -61,7 +61,7 @@ namespace _Scripts {
             _movePointer = 0;
             Health = 500;
             MaxHealth = 500;
-            Radius = 0.1f;
+            Radius = 0.3f;
             _prePosition = transform.position;
         }
 

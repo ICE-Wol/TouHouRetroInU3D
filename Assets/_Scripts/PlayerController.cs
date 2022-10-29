@@ -87,11 +87,11 @@ namespace _Scripts {
         public void Fire() {
             if (_timer % 2 == 0) {
                 var bullet = BulletManager.Manager.PlayerBulletPool.Get();
-                bullet.transform.position = transform.position + 0.15f * Vector3.left + 0.1f * Vector3.up;
+                bullet.transform.position = transform.position + 0.15f * Vector3.left + 0.25f * Vector3.up;
                 bullet.transform.rotation = Quaternion.Euler(0, 0, 90f);
 
                 bullet = BulletManager.Manager.PlayerBulletPool.Get();
-                bullet.transform.position = transform.position - 0.15f * Vector3.left + 0.1f * Vector3.up;
+                bullet.transform.position = transform.position - 0.15f * Vector3.left + 0.25f * Vector3.up;
                 bullet.transform.rotation = Quaternion.Euler(0, 0, 90f);
             }
         }

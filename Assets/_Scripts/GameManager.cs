@@ -1,3 +1,5 @@
+using System;
+using _Scripts.Data;
 using UnityEngine;
 
 namespace _Scripts {
@@ -33,8 +35,10 @@ namespace _Scripts {
             return null;
         }
 
-        private int _playerNum;
-        
-        
+        private PlayerData _playerData;
+
+        private void Start() {
+            _playerData = new PlayerData();
+        }
     }
 }
