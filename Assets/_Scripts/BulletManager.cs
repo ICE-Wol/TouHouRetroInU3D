@@ -4,6 +4,7 @@ using UnityEngine.Pool;
 namespace _Scripts {
     public class BulletManager : MonoBehaviour {
         [SerializeField] private PlayerBullet playerBullet;
+        [SerializeField] private Sprite[] playerBulletSprites;
         public ObjectPool<PlayerBullet> PlayerBulletPool;
         public static BulletManager Manager;
 
@@ -28,10 +29,8 @@ namespace _Scripts {
             }, false, 50, 100);
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
+        public Sprite GetPlayerBulletSprite(int character, int type) {
+            return playerBulletSprites[type];
         }
     }
 }

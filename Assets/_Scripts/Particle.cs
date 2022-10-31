@@ -10,7 +10,9 @@ namespace _Scripts {
         private int _frameSpeed;
         private int _spritePointer;
         private int _timer;
+        private int _type;
 
+        public void SetType(int character, int order){}
         public void SetAnim(Sprite[] spr) {
             _spritePointer = 0;
             _timer = 0;
@@ -31,7 +33,7 @@ namespace _Scripts {
         void FixedUpdate() {
             transform.localScale += Time.fixedDeltaTime * 3f * Vector3.one;
             transform.position += Time.fixedDeltaTime * 3f * Vector3.up;
-            spriteRenderer.color = Calc.Fade(spriteRenderer.color, 4f);
+            spriteRenderer.color = Calc.Fade(spriteRenderer.color, 5f);
 
             if (_anim == null) 
                 ParticleManager.Manager.ParticlePool.Release(this);

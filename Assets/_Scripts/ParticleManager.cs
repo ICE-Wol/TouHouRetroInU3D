@@ -4,6 +4,7 @@ using UnityEngine.Pool;
 namespace _Scripts {
     public class ParticleManager : MonoBehaviour {
         [SerializeField] private Sprite[] player00Shoot00;
+        [SerializeField] private Sprite[] player00Shoot01;
         
         [SerializeField] private Particle particle;
         public ObjectPool<Particle> ParticlePool;
