@@ -7,7 +7,7 @@ namespace _Scripts.Data {
         public int LifePiece;
         public int Bomb;
         public int BombPiece;
-        public float Power;
+        public float Power { private set; get; }
         public int Graze;
         public int MaxPoint;
         public int Score;
@@ -19,7 +19,7 @@ namespace _Scripts.Data {
             LifePiece = 0;
             Bomb = 3;
             BombPiece = 0;
-            Power = 1f;
+            Power = 4f;
             Graze = 0;
             MaxPoint = 1000;
             Score = 0;

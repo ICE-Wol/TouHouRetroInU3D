@@ -10,28 +10,36 @@ namespace _Scripts {
         private int _frameSpeed;
         private int _spritePointer;
         private int _timer;
-
-        public void SetAnim(Sprite[] spr) {
+        private int _type;
+        private float _direction;
+        
+        public void SetType(int character, int order) {
+            _type = character * 10 + order;
             _spritePointer = 0;
             _timer = 0;
             transform.localScale = Vector3.one;
             spriteRenderer.sprite = null;
             spriteRenderer.color = Calc.SetAlpha(spriteRenderer.color, 1f);
-            this._anim = spr;
+            _anim = ParticleManager.Manager.GetParticleAnim(character, order);
+        }
+        
+        public void SetDirection(float direction) {
+            _direction = direction;
         }
         
         void Start() {
             _timer = 0;
             _frameSpeed = 10;
             spriteRenderer = GetComponent<SpriteRenderer>();
-            SetAnim(ParticleManager.Manager.GetParticleAnim(1));
+            //SetAnim(ParticleManager.Manager.GetParticleAnim());
         }
 
         // Update is called once per frame
         void FixedUpdate() {
             transform.localScale += Time.fixedDeltaTime * 3f * Vector3.one;
-            transform.position += Time.fixedDeltaTime * 3f * Vector3.up;
-            spriteRenderer.color = Calc.Fade(spriteRenderer.color, 4f);
+            transform.position += Time.fixedDeltaTime * 3f * (Vector3)Calc.Degree2Direction(_direction);
+            transform.rotation = Quaternion.Euler(0f,0f,_direction);
+            spriteRenderer.color = Calc.Fade(spriteRenderer.color, 5f);
 
             if (_anim == null) 
                 ParticleManager.Manager.ParticlePool.Release(this);

@@ -4,6 +4,7 @@ using UnityEngine.Pool;
 namespace _Scripts {
     public class ParticleManager : MonoBehaviour {
         [SerializeField] private Sprite[] player00Shoot00;
+        [SerializeField] private Sprite[] player00Shoot01;
         
         [SerializeField] private Particle particle;
         public ObjectPool<Particle> ParticlePool;
@@ -18,10 +19,12 @@ namespace _Scripts {
             }
         }
 
-        public Sprite[] GetParticleAnim(int ord) {
+        public Sprite[] GetParticleAnim(int character, int ord) {
             switch (ord) {
                  default:
                      return player00Shoot00;
+                 case 1:
+                     return player00Shoot01;
             }
         }
         

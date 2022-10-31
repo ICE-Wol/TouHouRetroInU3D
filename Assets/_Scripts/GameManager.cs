@@ -5,6 +5,7 @@ using UnityEngine;
 namespace _Scripts {
     public class GameManager : MonoBehaviour {
         public static GameManager Manager;
+        public PlayerData PlayerData;
 
         private void Awake() {
             if (Manager == null) {
@@ -13,6 +14,8 @@ namespace _Scripts {
             else {
                 Destroy(this.gameObject);
             }
+            
+            PlayerData = new PlayerData();
         }
         
         [SerializeField] private Sprite[] player00Idle;
@@ -33,12 +36,6 @@ namespace _Scripts {
                     break;
             }
             return null;
-        }
-
-        private PlayerData _playerData;
-
-        private void Start() {
-            _playerData = new PlayerData();
         }
     }
 }
