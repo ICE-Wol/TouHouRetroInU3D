@@ -11,6 +11,7 @@ namespace _Scripts {
         private float _speed;
         private float _radius;
         private float _direction;
+        private float _targetDirection;
         private int _damage;
         private int _timer;
         
@@ -41,9 +42,26 @@ namespace _Scripts {
         void Movement() {
             switch(_type) {
                 case 1:
+                    //if no signed the bullet would like wave
                     //homing bullet
-                    var tar = Vector2.SignedAngle(Vector2.right,_nearestEnemy.transform.position - transform.position);
-                    if(_timer < 300f) _direction = Calc.Approach(_direction, tar, 4f);
+                    if (_timer < 300 && _timer > 0 && _timer % 10 == 0) 
+                        _targetDirection = Vector2.SignedAngle(Vector2.right,
+                            _nearestEnemy.transform.position - transform.position);
+                    if (_timer > 0) {
+                        //TODO: maybe have better ways.
+                        var tmp = _targetDirection;
+                        if (_targetDirection - _direction > 180f) {
+                            _targetDirection -= 360f;
+                        }
+
+                        if (_direction - _targetDirection > 180f) {
+                            _targetDirection += 360f;
+                        }
+
+                        //_direction = Calc.Approach(_direction, _targetDirection, 8f);
+                        if (_direction >= _targetDirection) _direction -= 5f;
+                        else _direction += 5f;
+                    }
                     break;
             }
             
@@ -72,7 +90,6 @@ namespace _Scripts {
             //single bullet
             if (_nearestEnemy != null && _radius + _nearestEnemy.Radius >= minDis) {
                 _nearestEnemy.TakeDamage(_damage);
-                
                 MakeParticle(_type / 10, _type % 10);
                 BulletManager.Manager.PlayerBulletPool.Release(this);
             }
