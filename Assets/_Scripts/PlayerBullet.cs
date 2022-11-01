@@ -20,6 +20,7 @@ namespace _Scripts {
         /// <param name="character"></param>
         /// <param name="order">0 refer to the main fire.</param>
         public void SetPlayerBulletType(int character, int order) {
+<<<<<<< HEAD
             _timer = 0;
             _type = character * 10 + order;
             spritesRenderer.sprite = BulletManager.Manager.GetPlayerBulletSprite(character, order);
@@ -32,6 +33,16 @@ namespace _Scripts {
             
             _radius = 0.06f;
             _damage = 0;
+=======
+            _type = character * 10 + order;
+            spritesRenderer.sprite = BulletManager.Manager.GetPlayerBulletSprite(character, order);
+            
+            if (_type % 10 == 0) _speed = 30f;
+            else _speed = 4f;
+            
+            _radius = 0.06f;
+            _damage = 1;
+>>>>>>> 7e0e1f1a39a1786db713427a7a0b35f9f196f88d
         }
 
         public void SetDirection(float direction) {
@@ -39,6 +50,7 @@ namespace _Scripts {
         }
 
         void Movement() {
+<<<<<<< HEAD
             switch(_type) {
                 case 1:
                     //homing bullet
@@ -58,6 +70,28 @@ namespace _Scripts {
             p.SetType(character, order);
             p.SetDirection(_direction);
             p.transform.position = transform.position;
+=======
+            switch(_type)
+            {
+                default:
+                    transform.position += _speed * Time.fixedDeltaTime * Vector3.up;
+                    transform.rotation = Quaternion.Euler(0f,0f,90f);
+                    if (transform.position.y >= 10f) 
+                        BulletManager.Manager.PlayerBulletPool.Release(this);
+                    break;
+                
+                case 1:
+                    var tar = Vector2.SignedAngle(Vector2.right,_nearestEnemy.transform.position - transform.position);
+                    if(_timer < 300f) _direction = Calc.Approach(_direction, tar, 4f);
+                    transform.position += _speed * Time.fixedDeltaTime * (Vector3)Calc.Degree2Direction(_direction);
+                    transform.rotation = Quaternion.Euler(0f,0f,_direction);
+                    if(_timer > 3000f)
+                        BulletManager.Manager.PlayerBulletPool.Release(this);
+                    break;
+                    
+                
+            }
+>>>>>>> 7e0e1f1a39a1786db713427a7a0b35f9f196f88d
         }
 
         void CheckHit() {
@@ -72,6 +106,13 @@ namespace _Scripts {
             //single bullet
             if (_nearestEnemy != null && _radius + _nearestEnemy.Radius >= minDis) {
                 _nearestEnemy.TakeDamage(_damage);
+<<<<<<< HEAD
+=======
+                
+                var p = ParticleManager.Manager.ParticlePool.Get();
+                p.SetAnim(ParticleManager.Manager.GetParticleAnim(1));
+                p.transform.position = transform.position;
+>>>>>>> 7e0e1f1a39a1786db713427a7a0b35f9f196f88d
                 
                 MakeParticle(_type / 10, _type % 10);
                 BulletManager.Manager.PlayerBulletPool.Release(this);

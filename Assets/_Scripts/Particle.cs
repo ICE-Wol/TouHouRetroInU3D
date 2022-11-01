@@ -11,10 +11,16 @@ namespace _Scripts {
         private int _spritePointer;
         private int _timer;
         private int _type;
+<<<<<<< HEAD
         private float _direction;
         
         public void SetType(int character, int order) {
             _type = character * 10 + order;
+=======
+
+        public void SetType(int character, int order){}
+        public void SetAnim(Sprite[] spr) {
+>>>>>>> 7e0e1f1a39a1786db713427a7a0b35f9f196f88d
             _spritePointer = 0;
             _timer = 0;
             transform.localScale = Vector3.one;
@@ -37,8 +43,12 @@ namespace _Scripts {
         // Update is called once per frame
         void FixedUpdate() {
             transform.localScale += Time.fixedDeltaTime * 3f * Vector3.one;
+<<<<<<< HEAD
             transform.position += Time.fixedDeltaTime * 3f * (Vector3)Calc.Degree2Direction(_direction);
             transform.rotation = Quaternion.Euler(0f,0f,_direction);
+=======
+            transform.position += Time.fixedDeltaTime * 3f * Vector3.up;
+>>>>>>> 7e0e1f1a39a1786db713427a7a0b35f9f196f88d
             spriteRenderer.color = Calc.Fade(spriteRenderer.color, 5f);
 
             if (_anim == null) 
