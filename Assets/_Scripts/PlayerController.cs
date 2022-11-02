@@ -108,9 +108,19 @@ namespace _Scripts {
 
             if (_timer % 6 == 0) {
                 for (int i = 1; i <= _numSubActivated; i++) {
+<<<<<<< HEAD
                     //(+ 90f - i * 360f / xx)to make "tail fin slap" 
                     //(_timer * 2f + i * 360f / _numSubActivated) to make normal circle
                     _playerSubs[i - 1].Fire((_timer * 2f + i * 360f / _numSubActivated) % 360f);
+=======
+<<<<<<< HEAD
+                    //(+ 90f - i * 360f / xx)to make "tail fin slap" 
+                    //(_timer * 2f + i * 360f / _numSubActivated) to make normal circle
+                    _playerSubs[i - 1].Fire((_timer * 2f + i * 360f / _numSubActivated) % 360f);
+=======
+                    _playerSubs[i - 1].Fire(_timer * 2f - i * 360f / _numSubActivated + 90f);
+>>>>>>> 7e0e1f1a39a1786db713427a7a0b35f9f196f88d
+>>>>>>> d6dc3132892ee4607639669b6839cc474d72a47c
                 }
             }
         }
@@ -133,9 +143,20 @@ namespace _Scripts {
         private void FollowSub() {
             for (int i = 1; i <= _numSubActivated; i++) {
                 var pos = transform.position;
+<<<<<<< HEAD
                 //x sin, y cos to make "tail fin slap"
                 pos.x += _radSub * Mathf.Cos(Mathf.Deg2Rad * (_timer * 2f + i * 360f / _numSubActivated));
                 pos.y += _radSub * Mathf.Sin(Mathf.Deg2Rad * (_timer * 2f + i * 360f / _numSubActivated));
+=======
+<<<<<<< HEAD
+                //x sin, y cos to make "tail fin slap"
+                pos.x += _radSub * Mathf.Cos(Mathf.Deg2Rad * (_timer * 2f + i * 360f / _numSubActivated));
+                pos.y += _radSub * Mathf.Sin(Mathf.Deg2Rad * (_timer * 2f + i * 360f / _numSubActivated));
+=======
+                pos.x += _radSub * Mathf.Sin(Mathf.Deg2Rad * (_timer * 2f + i * 360f / _numSubActivated));
+                pos.y += _radSub * Mathf.Cos(Mathf.Deg2Rad * (_timer * 2f + i * 360f / _numSubActivated));
+>>>>>>> 7e0e1f1a39a1786db713427a7a0b35f9f196f88d
+>>>>>>> d6dc3132892ee4607639669b6839cc474d72a47c
                 _playerSubs[i - 1].transform.position
                     = Calc.Approach(_playerSubs[i - 1].transform.position, pos, 8f * Vector3.one);
             }
