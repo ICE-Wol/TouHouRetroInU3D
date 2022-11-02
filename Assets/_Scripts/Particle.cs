@@ -39,6 +39,7 @@ namespace _Scripts {
             transform.localScale += Time.fixedDeltaTime * 3f * Vector3.one;
             transform.position += Time.fixedDeltaTime * 3f * (Vector3)Calc.Degree2Direction(_direction);
             transform.rotation = Quaternion.Euler(0f,0f,_direction);
+
             spriteRenderer.color = Calc.Fade(spriteRenderer.color, 5f);
 
             if (_anim == null) 

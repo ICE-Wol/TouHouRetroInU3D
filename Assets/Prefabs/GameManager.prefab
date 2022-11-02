@@ -102,6 +102,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBullet: {fileID: 3029841379392060586, guid: 1c2878005eee3ea47a9da8200f80fca3, type: 3}
+  playerBulletSprites:
+  - {fileID: -1199785781, guid: f3ede35acdc658146b707fe0a398e1dd, type: 3}
+  - {fileID: -1447114636, guid: 4849f02638710c347bcd57ddc9eed74c, type: 3}
 --- !u!114 &2919679402884931779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +120,16 @@ MonoBehaviour:
   player00Shoot00:
   - {fileID: 1713363024, guid: 900129580b8c40c4db3c66295c1b9feb, type: 3}
   - {fileID: -1913761651, guid: 900129580b8c40c4db3c66295c1b9feb, type: 3}
+  player00Shoot01:
+  - {fileID: -103802841, guid: 4849f02638710c347bcd57ddc9eed74c, type: 3}
+  - {fileID: -661701131, guid: 4849f02638710c347bcd57ddc9eed74c, type: 3}
+  - {fileID: -1511386366, guid: 4849f02638710c347bcd57ddc9eed74c, type: 3}
+  - {fileID: 263496607, guid: 4849f02638710c347bcd57ddc9eed74c, type: 3}
+  - {fileID: -1472586249, guid: 4849f02638710c347bcd57ddc9eed74c, type: 3}
+  - {fileID: 1039352010, guid: 4849f02638710c347bcd57ddc9eed74c, type: 3}
+  - {fileID: -198565722, guid: 4849f02638710c347bcd57ddc9eed74c, type: 3}
+  - {fileID: -2008275607, guid: 4849f02638710c347bcd57ddc9eed74c, type: 3}
+  - {fileID: -1173669395, guid: 4849f02638710c347bcd57ddc9eed74c, type: 3}
   particle: {fileID: 8624650928913395907, guid: daf98e30874a69247b26f4561ab7398f, type: 3}
 --- !u!114 &380076590
 MonoBehaviour:

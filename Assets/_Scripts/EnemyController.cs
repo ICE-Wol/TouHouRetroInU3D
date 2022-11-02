@@ -1,4 +1,5 @@
 using System;
+using _Scripts.Data;
 using UnityEngine;
 
 namespace _Scripts {
@@ -67,11 +68,26 @@ namespace _Scripts {
 
         // Update is called once per frame
         void FixedUpdate() {
-            _timer++;
+            
             transform.position = Vector3.zero + Vector3.right * Mathf.Sin(Mathf.Deg2Rad * _timer / 5f);
             _direction = (transform.position - _prePosition).normalized;
             PlayAnim();
             _prePosition = transform.position;
+            
+            //attack here.
+            if (_timer % 600 == 0) {
+                for (int i = 1; i <= 10; i++) {
+                    var p = BulletManager.Manager.BulletPool.Get();
+                    var d = new BulletData();
+                    d.GenerateMode = 1;
+                    p.SetData(d);
+                    p.transform.position = transform.position;
+                    p.SetMovement(0, new float[] {i * 36f - 90f, 2f});
+                }
+            }
+            _timer++;
+
+
         }
 
         private void OnDrawGizmos() {

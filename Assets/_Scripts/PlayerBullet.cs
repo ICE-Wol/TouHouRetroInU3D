@@ -28,11 +28,14 @@ namespace _Scripts {
             if (_type % 10 == 0) {
                 _speed = 30f;
                 _direction = 90f;
+                transform.rotation = Quaternion.Euler(0f, 0f, _direction);
             }
             else _speed = 4f;
             
             _radius = 0.06f;
             _damage = 0;
+            _type = character * 10 + order;
+            spritesRenderer.sprite = BulletManager.Manager.GetPlayerBulletSprite(character, order);
         }
 
         public void SetDirection(float direction) {
@@ -76,6 +79,27 @@ namespace _Scripts {
             p.SetType(character, order);
             p.SetDirection(_direction);
             p.transform.position = transform.position;
+            
+            switch(_type)
+            {
+                default:
+                    transform.position += _speed * Time.fixedDeltaTime * Vector3.up;
+                    transform.rotation = Quaternion.Euler(0f,0f,90f);
+                    if (transform.position.y >= 10f) 
+                        BulletManager.Manager.PlayerBulletPool.Release(this);
+                    break;
+                
+                case 1:
+                    var tar = Vector2.SignedAngle(Vector2.right,_nearestEnemy.transform.position - transform.position);
+                    if(_timer < 300f) _direction = Calc.Approach(_direction, tar, 4f);
+                    transform.position += _speed * Time.fixedDeltaTime * (Vector3)Calc.Degree2Direction(_direction);
+                    transform.rotation = Quaternion.Euler(0f,0f,_direction);
+                    if(_timer > 3000f)
+                        BulletManager.Manager.PlayerBulletPool.Release(this);
+                    break;
+                    
+                
+            }
         }
 
         void CheckHit() {
@@ -87,7 +111,7 @@ namespace _Scripts {
                     _nearestEnemy = enemy;
                 }
             }
-            //single bullet
+            //single hit bullet
             if (_nearestEnemy != null && _radius + _nearestEnemy.Radius >= minDis) {
                 _nearestEnemy.TakeDamage(_damage);
                 MakeParticle(_type / 10, _type % 10);

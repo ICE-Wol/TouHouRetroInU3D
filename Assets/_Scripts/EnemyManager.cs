@@ -15,7 +15,7 @@ namespace _Scripts {
                 Destroy(this.gameObject);
             }
         }
-        // Start is called before the first frame update
+        
         void Start()
         {
         
