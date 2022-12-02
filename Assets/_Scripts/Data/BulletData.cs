@@ -7,10 +7,6 @@ namespace _Scripts.Data {
         public Vector3 Scale;
         public float Radius;
         public bool IsGlowing;
-        
-        public int MovementMode;
-        public int GenerateMode;
-        public int ReleaseMode;
 
         public BulletData() {
             Type = 3;
@@ -19,10 +15,6 @@ namespace _Scripts.Data {
             UniqueColor = UnityEngine.Color.white;
             Scale = Vector3.one;
             IsGlowing = false;
-            
-            MovementMode = 0;
-            GenerateMode = 0;
-            ReleaseMode = 0;
         }
     }
 

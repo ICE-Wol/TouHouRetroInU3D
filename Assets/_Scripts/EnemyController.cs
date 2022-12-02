@@ -79,10 +79,9 @@ namespace _Scripts {
                 for (int i = 1; i <= 10; i++) {
                     var p = BulletManager.Manager.BulletPool.Get();
                     var d = new BulletData();
-                    d.GenerateMode = 1;
                     p.SetData(d);
                     p.transform.position = transform.position;
-                    p.SetMovement(0, new float[] {i * 36f - 90f, 2f});
+                    //p.SetMovement(0, new float[] {i * 36f - 90f, 2f});
                 }
             }
             _timer++;

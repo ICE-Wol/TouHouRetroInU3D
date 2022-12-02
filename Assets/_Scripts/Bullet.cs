@@ -13,63 +13,57 @@ namespace _Scripts {
     }
     
     public class Bullet : MonoBehaviour {
-        private SpriteRenderer _spriteRenderer;
-        private Transform _parent;
-        private int _order;
-        private List<Bullet> _childList;
+        public SpriteRenderer spriteRenderer;
+        public Transform parent;
+        public int order;
 
-        private int _type;
-        private int _color;
-        private Color _uniqueColor;
-        private Vector3 _scale;
-        private Vector3 _direction;
+        public int type;
+        public int color;
+        public Color uniqueColor;
+        public Vector3 scale;
+        public Vector3 direction;
         //private float _alpha; **already in color.
-        private float _speed;
-        private float _rotation;
-        private float _radius;
-        private bool _isGlowing;
-        private bool _isChecking;
+        public float speed;
+        public float rotation;
+        public float radius;
+        public bool isGlowing;
+        public bool isChecking;
 
-        private int _movementMode;
+        /*private int _movementMode;
         private int _generateMode;
-        private int _releaseMode;
+        private int _releaseMode;*/
 
         private int _timer;
         private BulletStates _state;
 
         private void Awake() {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         public void SetData(BulletData data) {
-            _type = data.Type;
-            _color = data.Color;
-            _uniqueColor = data.UniqueColor;
-            _isGlowing = data.IsGlowing;
-            _scale = data.Scale;
+            type = data.Type;
+            color = data.Color;
+            uniqueColor = data.UniqueColor;
+            isGlowing = data.IsGlowing;
+            scale = data.Scale;
             
-            _spriteRenderer.sprite
-                = BulletManager.Manager.GetBulletSprite(_type, _color);
-            _spriteRenderer.material
-                = BulletManager.Manager.GetBulletMaterial(_isGlowing);
-
-            _movementMode = data.MovementMode;
-            _generateMode = data.GenerateMode;
-            _releaseMode = data.ReleaseMode;
-            
+            spriteRenderer.sprite
+                = BulletManager.Manager.GetBulletSprite(type, color);
+            spriteRenderer.material
+                = BulletManager.Manager.GetBulletMaterial(isGlowing);
         }
 
-        public void Refresh() {
-            _spriteRenderer.color = _uniqueColor;
-            transform.localScale = _scale;
-            transform.rotation = Quaternion.Euler(0,0,_rotation);
+        /*public void Refresh() {
+            spriteRenderer.color = uniqueColor;
+            transform.localScale = scale;
+            transform.rotation = Quaternion.Euler(0,0,rotation);
         }
 
         public void SetMovement(int mode, float[] args) {
             switch (mode) {
                 default:
-                    _direction = Calc.Degree2Direction(args[0]);
-                    _speed = args[1];
+                    direction = Calc.Degree2Direction(args[0]);
+                    speed = args[1];
                     break;
             }
         }
@@ -110,12 +104,12 @@ namespace _Scripts {
                 default:
                     break;
             }
-        }
+        }*/
 
         private void FixedUpdate() {
-            Refresh();
-            Movement(_movementMode);
-            Generate(_generateMode);
+            //Refresh();
+            //Movement(_movementMode);
+            //Generate(_generateMode);
             _timer++;
         }
     }
