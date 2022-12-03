@@ -123,7 +123,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1801537677
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1414013456, guid: 5e6987b8d53f0e2439b024283256de0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -150,7 +150,6 @@ MonoBehaviour:
   effSlow: {fileID: 2012519139902794718}
   playerBullet: {fileID: 3029841379392060586, guid: 1c2878005eee3ea47a9da8200f80fca3, type: 3}
   playerSub: {fileID: 4215128969343096156, guid: 40e54b48c29354b408194c50c66a6f07, type: 3}
-  _playerSubs: []
 --- !u!1 &2012519140644885719
 GameObject:
   m_ObjectHideFlags: 0

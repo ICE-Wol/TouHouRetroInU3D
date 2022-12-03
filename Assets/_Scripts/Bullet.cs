@@ -53,32 +53,12 @@ namespace _Scripts {
                 = BulletManager.Manager.GetBulletMaterial(isGlowing);
         }
 
-        /*public void Refresh() {
-            spriteRenderer.color = uniqueColor;
-            transform.localScale = scale;
-            transform.rotation = Quaternion.Euler(0,0,rotation);
+        public bool CheckDistance(GameObject target, float r) {
+            var d2 = (transform.position - target.transform.position).sqrMagnitude;
+            return (radius * radius + r * r > d2);
         }
 
-        public void SetMovement(int mode, float[] args) {
-            switch (mode) {
-                default:
-                    direction = Calc.Degree2Direction(args[0]);
-                    speed = args[1];
-                    break;
-            }
-        }
-
-        private void Movement(int mode) {
-            switch (mode) {
-                default:
-                    _rotation = Vector2.SignedAngle(Vector2.right, _direction) - 90f;
-                    transform.position += _speed * Time.deltaTime * _direction;
-                    break;
-            }
-            
-        }
-
-        private void Generate(int mode) {
+        /*private void Generate(int mode) {
             switch (mode) {
                 default:
                     break;
@@ -97,19 +77,9 @@ namespace _Scripts {
 
                     break;
             }
-        }
-
-        private void Release(int mode) {
-            switch (mode) {
-                default:
-                    break;
-            }
         }*/
 
         private void FixedUpdate() {
-            //Refresh();
-            //Movement(_movementMode);
-            //Generate(_generateMode);
             _timer++;
         }
     }

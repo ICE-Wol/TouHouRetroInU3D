@@ -33,12 +33,12 @@ namespace _Scripts {
         }
         
         
-        void Update() {
+        void FixedUpdate() {
             _timer++;
             
-            _curAlpha = Calc.Approach(_curAlpha, _tarAlpha, 32f);
-            _curScaleLeft = Calc.Approach(_curScaleLeft, _tarScaleLeft, 64f);
-            _curScaleRight = Calc.Approach(_curScaleRight, _tarScaleRight, 64f);
+            _curAlpha = Calc.Approach(_curAlpha, _tarAlpha, 4f);
+            _curScaleLeft = Calc.Approach(_curScaleLeft, _tarScaleLeft, 8f);
+            _curScaleRight = Calc.Approach(_curScaleRight, _tarScaleRight, 8f);
             
             slowEffects[0].transform.localScale = _curScaleLeft * Vector3.one;
             slowEffects[1].transform.localScale = _curScaleRight * Vector3.one;
@@ -48,9 +48,9 @@ namespace _Scripts {
             slowEffects[1].color = color;
             slowEffects[0].color = color;
             
-            slowEffects[0].transform.rotation = Quaternion.Euler(0,0,_timer / 10f);
-            slowEffects[1].transform.rotation = Quaternion.Euler(0,0,-_timer / 10f);
-
+            slowEffects[0].transform.rotation = Quaternion.Euler(0,0,_timer);
+            slowEffects[1].transform.rotation = Quaternion.Euler(0,0,-_timer);
+            
         }
     }
 }
