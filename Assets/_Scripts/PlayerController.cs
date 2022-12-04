@@ -89,8 +89,12 @@ namespace _Scripts {
         /// Cooperate with the command manager.
         /// </summary>
         private void Movement() {
-            transform.position += _moveSpeed * _slowMultiplier * Time.fixedDeltaTime
-                                  * (Vector3)_direction.normalized;
+            var targetPos = transform.position + _moveSpeed * _slowMultiplier * Time.fixedDeltaTime
+                * (Vector3)_direction.normalized;
+            //bound restriction
+            if (Mathf.Abs(targetPos.x) > 4.73f) return;
+            if (targetPos.y > 5.37f || targetPos.y < -5.05f) return;
+            transform.position = targetPos;
         }
 
         public void Fire() {

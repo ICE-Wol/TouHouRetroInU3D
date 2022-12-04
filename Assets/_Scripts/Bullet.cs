@@ -53,9 +53,15 @@ namespace _Scripts {
                 = BulletManager.Manager.GetBulletMaterial(isGlowing);
         }
 
-        public bool CheckDistance(GameObject target, float r) {
+        public bool CheckCollision(GameObject target, float r) {
             var d2 = (transform.position - target.transform.position).sqrMagnitude;
             return (radius * radius + r * r > d2);
+        }
+
+        public void Release() {
+            _state = BulletStates.Inactivated;
+            BulletManager.Manager.BulletPool.Release(this);
+            
         }
 
         /*private void Generate(int mode) {

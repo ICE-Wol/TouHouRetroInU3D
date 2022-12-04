@@ -14,7 +14,7 @@ Shader "Custom/ShaderLearning"
 		Pass
 		{
 			Blend SrcAlpha OneMinusSrcAlpha
-			zwrite off
+			Cull Off ZWrite Off ZTest Always
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
@@ -51,7 +51,7 @@ Shader "Custom/ShaderLearning"
 			{
 				float4 color = tex2D(_MainTex, i.uv);
 				//pick the color of the current uv pixel.
-				color *= float4(i.uv.r, i.uv.g, 1, 1);
+				color.rgb = 1 - color.rgb;
 				return color;
 			}
 			ENDCG
