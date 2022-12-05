@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace _Scripts {
     public class EnemyController : MonoBehaviour {
+        public BulletController tempController;
+        
         [SerializeField] private Sprite[] animFairy;
         private SpriteRenderer _spriteRenderer;
         private int _timer;
@@ -69,24 +71,17 @@ namespace _Scripts {
         // Update is called once per frame
         void FixedUpdate() {
             
-            transform.position = Vector3.zero + Vector3.right * Mathf.Sin(Mathf.Deg2Rad * _timer / 5f);
+            //transform.position = Vector3.zero + Vector3.right * Mathf.Sin(Mathf.Deg2Rad * _timer / 5f);
             _direction = (transform.position - _prePosition).normalized;
             PlayAnim();
             _prePosition = transform.position;
             
             //attack here.
-            if (_timer % 600 == 0) {
-                for (int i = 1; i <= 10; i++) {
-                    var p = BulletManager.Manager.BulletPool.Get();
-                    var d = new BulletData();
-                    p.SetData(d);
-                    p.transform.position = transform.position;
-                    //p.SetMovement(0, new float[] {i * 36f - 90f, 2f});
-                }
+            if (_timer % 15 == 0) {
+                var c = Instantiate(tempController, transform.position,Quaternion.Euler(0f,0f,0f));
+                c.Activate(_timer / 15 + 10, _timer / 5f);
             }
             _timer++;
-
-
         }
 
         private void OnDrawGizmos() {

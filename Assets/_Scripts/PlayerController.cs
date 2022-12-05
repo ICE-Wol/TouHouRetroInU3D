@@ -118,6 +118,8 @@ namespace _Scripts {
                 }
             }
         }
+        
+        public void GetHit(){ }
 
         private void GenerateSub() {
             _playerSubs = new PlayerSub[4];

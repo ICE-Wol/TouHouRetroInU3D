@@ -24,7 +24,7 @@ namespace _Scripts {
                    Equal(argument1.z, argument2.z, epsilon);
         }
 
-        public static Vector2 Degree2Direction(float degree) {
+        public static Vector2 Deg2Dir(float degree) {
             return new Vector2(Mathf.Cos(Mathf.Deg2Rad * degree), Mathf.Sin(Mathf.Deg2Rad * degree));
         }
         

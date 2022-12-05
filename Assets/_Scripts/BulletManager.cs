@@ -47,6 +47,12 @@ namespace _Scripts {
             return playerBulletSprites[type];
         }
 
+        public Bullet GetBullet() {
+            var b = BulletPool.Get();
+            b.SetState(BulletStates.Spawning);
+            return b;
+        }
+
         public Sprite GetBulletSprite(int type, int color) {
             return bulletSprites[type * 16 + color];
         }

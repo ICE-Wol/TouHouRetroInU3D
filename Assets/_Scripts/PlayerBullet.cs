@@ -68,7 +68,7 @@ namespace _Scripts {
                     break;
             }
             
-            transform.position += _speed * Time.fixedDeltaTime * (Vector3)Calc.Degree2Direction(_direction);
+            transform.position += _speed * Time.fixedDeltaTime * (Vector3)Calc.Deg2Dir(_direction);
             transform.rotation = Quaternion.Euler(0f, 0f, _direction);
             if(_timer > 1500f)
                 BulletManager.Manager.PlayerBulletPool.Release(this);
@@ -92,7 +92,7 @@ namespace _Scripts {
                 case 1:
                     var tar = Vector2.SignedAngle(Vector2.right,_nearestEnemy.transform.position - transform.position);
                     if(_timer < 300f) _direction = Calc.Approach(_direction, tar, 4f);
-                    transform.position += _speed * Time.fixedDeltaTime * (Vector3)Calc.Degree2Direction(_direction);
+                    transform.position += _speed * Time.fixedDeltaTime * (Vector3)Calc.Deg2Dir(_direction);
                     transform.rotation = Quaternion.Euler(0f,0f,_direction);
                     if(_timer > 3000f)
                         BulletManager.Manager.PlayerBulletPool.Release(this);

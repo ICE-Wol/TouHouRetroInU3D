@@ -58,10 +58,16 @@ namespace _Scripts {
             return (radius * radius + r * r > d2);
         }
 
+        public void CheckBound() {
+            var pos = transform.position;
+            if (Mathf.Abs(pos.x) > 6f || Mathf.Abs(pos.y) > 6f) {
+                Release();
+            }
+        }
+
         public void Release() {
             _state = BulletStates.Inactivated;
             BulletManager.Manager.BulletPool.Release(this);
-            
         }
 
         /*private void Generate(int mode) {
@@ -84,9 +90,40 @@ namespace _Scripts {
                     break;
             }
         }*/
+        public BulletStates GetState() => _state;
 
+        public void SetState(BulletStates state) {
+            _state = state;
+            switch (state) {
+                case BulletStates.Spawning:
+                    //temp, using turing big instead of fog
+                    transform.localScale = Vector3.zero;
+                    _fogScale = 0f;
+                    _fogAlpha = 0f;
+                    break;
+            }
+        }
+
+        private float _fogScale;
+        private float _fogAlpha;
+        
         private void FixedUpdate() {
             _timer++;
+            CheckBound();
+            switch (_state) {
+                case BulletStates.Spawning:
+                    _fogScale = Calc.Approach(_fogScale, 1f, 16f);
+                    _fogAlpha = Calc.Approach(_fogAlpha, 1f, 16f);
+
+                    transform.localScale = _fogScale * Vector3.one;
+                    var c = spriteRenderer.color;
+                    c.a = _fogAlpha;
+                    spriteRenderer.color = c;
+
+                    if (Calc.Equal(_fogScale, 1f, 0.01f))
+                        SetState(BulletStates.Activated);
+                    break;
+            }
         }
     }
 }
